@@ -1,4 +1,6 @@
+
 import 'package:flutter/material.dart';
+import 'package:test1/model/scenesModel.dart';
 import 'package:test1/pages/device_pages/CoffeeMakerPage.dart';
 import 'package:test1/pages/device_pages/FreezerPage.dart';
 import 'package:test1/pages/device_pages/LampPage.dart';
@@ -7,67 +9,68 @@ import 'package:test1/pages/device_pages/RouterPage.dart';
 import 'package:test1/pages/device_pages/StovePage.dart';
 import 'package:test1/pages/device_pages/ac.dart';
 import 'model/connectedModel.dart';
-import 'model/model.dart';
+import 'model/scenes.dart';
 
-class DeviceSection extends StatefulWidget {
+class SceneSection extends StatefulWidget {
 
-  final DeviceModel model;
-   const DeviceSection(this.model, {super.key});
+  final SceneModel model;
+  const SceneSection(this.model, {super.key});
 
   @override
-  State<DeviceSection> createState() => _DeviceSectionState();
+  State<SceneSection> createState() => _SceneSectionState();
 }
 
-class _DeviceSectionState extends State<DeviceSection> {
+class _SceneSectionState extends State<SceneSection> {
 
-  getItemAndNavigate(Device model, context) {
-    setState(() {
-  if(model.title=="A/C"){
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => AcPage()));
-  }else if(model.title=="Microwave"){
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => MVPage()));
-  }else if(model.title=="Freezer"){
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => FreezerPage()));
-  }else if(model.title=="Coffee Maker"){
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => CoffeeMakerPage()));
-  }else if(model.title=="Stove"){
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => StovePage()));
-  }else if(model.title=="Router"){
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => RouterPage()));
-  }else if(model.title=="Lamp"){
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => LampPage()));
-  }
-});
+  getItemAndNavigate(Scene model, BuildContext context) {
 
+    if(model.title=="A/C"){
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => AcPage()));
+    }else if(model.title=="Microwave"){
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => MVPage()));
+    }else if(model.title=="Freezer"){
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => FreezerPage()));
+    }else if(model.title=="Coffee Maker"){
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => CoffeeMakerPage()));
+    }else if(model.title=="Stove"){
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => StovePage()));
+    }else if(model.title=="Router"){
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => RouterPage()));
+    }else if(model.title=="Lamp"){
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => LampPage()));
+    }
 
 
   }
 
 
-  Widget _buildDeviceCard(DeviceModel model, int index) {
+  Widget _buildDeviceCard(SceneModel model, int index) {
     return InkWell(
-      onTap: () => getItemAndNavigate(model.allYatch[index],context),
+      onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => getItemAndNavigate(model.allYatch[index],context))),
       child: Container(
         height: 100,
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -133,7 +136,7 @@ class _DeviceSectionState extends State<DeviceSection> {
     );
   }
 
-  Widget _deviceGrid(DeviceModel model) {
+  Widget _deviceGrid(SceneModel model) {
     return Container(
         alignment: Alignment.topCenter,
         // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
@@ -194,13 +197,13 @@ class _DeviceSectionState extends State<DeviceSection> {
         isSwitched=true;
         textValue='Connected';
       });
-     // print('Connected');
+      // print('Connected');
     }else {
       setState((){
         isSwitched=false;
         textValue='not Connected';
       });
-     // print('not Connected');
+      // print('not Connected');
     }
   }
 
@@ -229,7 +232,7 @@ class _DeviceSectionState extends State<DeviceSection> {
               Icon(icon),
               const SizedBox(height: 5,),
               Text(text, style: const TextStyle(fontSize: 10),textAlign: TextAlign.center,),
-               Text(textValue,
+              Text(textValue,
                 style:const TextStyle(fontSize:8),),
 
               //Switch(value: false, onChanged: ())
@@ -249,7 +252,7 @@ class _DeviceSectionState extends State<DeviceSection> {
 
 
 class DeviceDescription extends StatefulWidget {
-  final Device modelHolder;
+  final Scene modelHolder;
 
   DeviceDescription( {required Key? key, required this.modelHolder}) ;
   @override

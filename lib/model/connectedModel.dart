@@ -70,3 +70,9 @@ class DeviceModel extends ConnectedModel {
     return List.from(_deviceList);
   }
 }
+
+class EnabledDevices extends DeviceModel{
+   List get  enabledDevices {
+     return List.from(_deviceList.where((element) => element.isEnable==true)).toList();
+   }
+}

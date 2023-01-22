@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:test1/routing.dart';
 
+import 'UI/glass.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -9,138 +11,193 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
-  var myController1 = TextEditingController();
-  var myController2 = TextEditingController();
+ // var myController1 = TextEditingController();
+  //var myController2 = TextEditingController();
 
   var formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-
-    return MaterialApp(
-        home:Scaffold(
+    return Scaffold(
             backgroundColor: Colors.blue[200],
-            body:
-            Padding(
-              padding: const EdgeInsets.all(30),
-              child: Center(
-                child: SingleChildScrollView(
-                  child:  Form(
-                    key: formkey,
-                    child: Column(
-                      children: [
-                      const Text(
-                        "My Home",
-                        style: TextStyle(
-                          fontSize: 50,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.teal,
+            body: Container(
+              height: double.infinity,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("bg1.jpg"), fit: BoxFit.cover)),
+              child: SingleChildScrollView(
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.all(20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(height: 20,),
+                            Image(
+                              image: AssetImage("logo.png"),
+                              height: 90,
+                            ),
+                            const Text(
+                              "My Home",
+                              style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.purple,
+                              ),
+                            ),
+                            SizedBox(height: 30,)
+                          ],
                         ),
-                      ),
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      TextFormField(
-                        controller: myController1,
-                        validator: (val){
-                          if(val!.isEmpty) return "prière de saisir une valeur";
-                        },
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: const InputDecoration(
-                          labelText: "Enter email",
-                          border: OutlineInputBorder(),
-                          prefixIcon: Icon(Icons.email),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      TextFormField(
-                        controller: myController2,
-                        validator: (val){
-                        if(val!.isEmpty) return "prière de saisir une valeur";
-                        },
-
-                        keyboardType: TextInputType.visiblePassword,
-                        obscureText: true,
-                        decoration: const InputDecoration(
-                          labelText: "Enter Password",
-                          border: OutlineInputBorder(),
-                          prefixIcon: Icon(Icons.lock),
-                          suffixIcon: Icon(Icons.remove_red_eye),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-
-                      const SizedBox(
-                        height: 25,
                       ),
                       Container(
-                        height: 60,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          gradient: const LinearGradient(colors: [Colors.blue, Colors.green]),
-                        ),
-                        child: MaterialButton(
-                          onPressed: (){
+                        height: MediaQuery.of(context).size.height,
+                        child: GlassMorphism(
+                          start: 0.5,
+                          end: 0.5,
+                          topRight: 60,
+                          topLeft: 60,
+                          bottomLeft: 0,
+                          bottomRight: 0,
+                          blurx: 3,
+                          blury: 3,
+                          child: Container(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Form(
+                              key: formkey,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  const SizedBox(
+                                    height: 25,
+                                  ),
+                                  Text("Sign in to get access to your smart home", style: TextStyle(color: Colors.deepPurple),),
 
-                            if(formkey.currentState!.validate()){
-                              setState(() {
-                                Navigator.push(context, MaterialPageRoute(builder: (c) => Routing()));
-                              });
-                            } else{
-                              setState(() {
-                                print("Prière de fixer les erreurs");
+                                  const SizedBox(
+                                    height: 40,
+                                  ),
 
-                              });
-                            }
 
-                            /*
-                            setState(() {
-                              if(formkey.currentState!.validate()){
-                                Navigator.push(context, MaterialPageRoute(builder: (c) => Routing()));
-                              }else{
-                                print("form not valid");
-                              }
-                            }); */
+                                  TextFormField(
+                                    //controller: myController2,
+                                    validator: (val) {
+                                      if (val!.isEmpty)
+                                        return "prière de saisir une valeur";
+                                    },
+                                    keyboardType: TextInputType.emailAddress,
+                                    decoration: InputDecoration(
+                                      labelText: "Enter Email",
+                                      labelStyle: TextStyle(color: Colors.deepPurple),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(20.0),
+                                        borderSide:
+                                        BorderSide(color: Colors.deepPurple),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(20.0),
+                                        borderSide:
+                                        BorderSide(color: Colors.deepPurple),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(color: Colors.deepPurple),
+                                      ),
+                                      prefixIcon: Icon(
+                                        Icons.email_outlined,
+                                        color: Colors.deepPurple,
+                                      ),
+                                    ),
+                                  ),
 
-                          },
-                          child: const Text(
-                            "LOGIN",
-                            style: TextStyle(
-                              fontSize: 25,
-                              color: Colors.white,
+
+                                  const SizedBox(
+                                    height: 25,
+                                  ),
+
+                                  TextFormField(
+                                    //controller: myController2,
+                                    validator: (val) {
+                                      if (val!.isEmpty)
+                                        return "prière de saisir une valeur";
+                                    },
+                                    keyboardType: TextInputType.visiblePassword,
+                                    obscureText: true,
+                                    decoration: InputDecoration(
+                                      labelText: "Enter Password",
+                                      labelStyle: TextStyle(color: Colors.deepPurple),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(color: Colors.deepPurple),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(20.0),
+                                        borderSide:
+                                            BorderSide(color: Colors.deepPurple),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(20.0),
+                                        borderSide:
+                                            BorderSide(color: Colors.deepPurple),
+                                      ),
+                                      prefixIcon: Icon(
+                                        Icons.lock_outline,
+                                        color: Colors.deepPurple,
+                                      ),
+                                      suffixIcon: Icon(Icons.remove_red_eye, color: Colors.deepPurple,),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 30,
+                                  ),
+                                  Container(
+                                      height: 50,
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(100),
+                                      ),
+                                      child: MaterialButton(
+                                        onPressed: () {
+                                          if (formkey.currentState!.validate()) {
+                                            setState(() {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (c) => Routing()));
+                                            });
+                                          } else {
+                                            setState(() {
+                                              print(
+                                                  "Prière de fixer les erreurs");
+                                            });
+                                          }
+                                        },
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20.0),
+                                          side: BorderSide(
+                                              color: Colors.deepPurple, width: 1),
+                                        ),
+                                        child: Text(
+                                          "Sign In",
+                                          style: TextStyle(
+                                              color: Colors.deepPurple,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.normal),
+                                        ),
+                                      ),
+                                  ),
+                                  SizedBox(height: 20,),
+                                  Text("Forgot ur password?... let's get u a new one", style: TextStyle(color: Colors.deepPurple),)
+                                ],
+                              ),
                             ),
                           ),
-
                         ),
                       ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        const Icon(Icons.fingerprint , size: 60, color: Colors.teal,),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        const Divider(
-                          height: 30,
-                          color: Colors.black,
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
                     ],
-                  ),
                   ),
                 ),
               ),
-            )));
+            ));
   }
 }
-
-
-

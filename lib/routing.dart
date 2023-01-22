@@ -5,6 +5,8 @@ import 'package:test1/pages/profile.dart';
 import 'package:test1/pages/settings.dart';
 import 'package:test1/pages/users.dart';
 
+import 'UI/MyDrawer.dart';
+
 
 var section = "devices";
 
@@ -16,16 +18,20 @@ class Routing extends StatefulWidget {
 
 class _RoutingState extends State<Routing> {
 
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+
   int _selectedIndex = 0;
   var myBody = [Dashboard(),Appliance(),Users(), Profile(),Settings()];
 
   Widget MyTile(icon,text,index){
     return ListTile(
+
       leading: Icon(icon,
-        color: Colors.blue,),
+        color: Colors.deepPurple),
       title: Text(text,
-        style: const TextStyle(color: Colors.blue, fontSize: 20.0),),
-      trailing: const Icon(Icons.arrow_right),
+        style: const TextStyle( fontSize: 20.0, color: Colors.deepPurple)),
+      trailing: const Icon(Icons.arrow_right, color: Colors.deepPurple,),
       onTap: () {
         _onItemTapped(index);
       },
@@ -35,13 +41,15 @@ class _RoutingState extends State<Routing> {
     setState(() {
       _selectedIndex = index;
     });
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (BuildContext context) => myBody[index]));
   }
-
 
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: false,
         routes: {
           '0': (context) => Dashboard(),
@@ -51,30 +59,24 @@ class _RoutingState extends State<Routing> {
           '4': (context) => Settings(),
         },
         home: Scaffold(
+          extendBodyBehindAppBar: true,
+          /* appBar: AppBar(
+              leading: Builder(
+             builder: (BuildContext context) {
+                return IconButton(
+                  icon: Icon(Icons.menu, color: Colors.deepPurple),
+                  onPressed: () {
+                    //open drawer
+                    Scaffold.of(context).openDrawer();
+                  },
+                );
+              }
+            ),,
+            backgroundColor: Color.fromRGBO(222,248,255,0),
+            elevation: 0,
 
-          drawer: Drawer(
-            child: ListView(
-              children: [
-                const UserAccountsDrawerHeader(
-                    accountName: Text("Imane Khayati"),
-                    accountEmail: Text("imane.khayati@e-polytechnique.ma"),
-                    currentAccountPicture: CircleAvatar(foregroundImage:
-                    AssetImage("assets/avatar.jpg"),)
-                ),
-                MyTile(Icons.house_outlined, "Dashboard", 0),
-                MyTile(Icons.developer_board, "Rooms & Devices", 1),
-                MyTile(Icons.group_outlined, "Users", 2),
-                MyTile(Icons.person_outline, "Profile", 3),
-                MyTile(Icons.settings_outlined, "Settings", 4),
-              ],
-            ),
-          ),
-
-          appBar: AppBar(
-            title: Text("My Home"),
-          ),
+          ),*/
           body: myBody[_selectedIndex],
-
         )
     );
   }

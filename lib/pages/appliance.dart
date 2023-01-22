@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import '../UI/MyDrawer.dart';
+import '../UI/glass.dart';
 import '../devices.dart';
 import '../model/connectedModel.dart';
 import '../model/roomModel.dart';
 import '../rooms.dart';
 import '../routing.dart';
+
+
+
 class Appliance extends StatefulWidget {
 
   final DeviceModel model1 = DeviceModel();
@@ -14,6 +19,7 @@ class Appliance extends StatefulWidget {
   State<Appliance> createState() => _ApplianceState();
 }
 class _ApplianceState extends State<Appliance> {
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 
   Widget? redirectSection(section){
@@ -24,99 +30,151 @@ class _ApplianceState extends State<Appliance> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea( child: SingleChildScrollView(
-      child:Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.end,
-
-        children: [
-          Container(
-            margin: EdgeInsets.all(30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                dashCard(Icons.sunny_snowing, "21°C"),
-                dashCard(Icons.water_drop, "50%"),
-                dashCard(Icons.co2, "2.1%"),
-              ],
-            ),
+    return Scaffold(
+        appBar: AppBar(
+          leading: Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                icon: Icon(Icons.menu, color: Colors.deepPurple),
+                onPressed: () {
+                //open drawer
+                Scaffold.of(context).openDrawer();
+                },
+              );
+              },
           ),
+          backgroundColor: Color.fromRGBO(0,0,0,0),
+          elevation: 0,
+        ),
+          drawer: MyDrawer(navigatorKey),
 
-          SizedBox(
-            width: double.infinity,
-            child: Container(
-              decoration: const BoxDecoration(
-                color: Colors.lightBlue,
-                borderRadius: BorderRadius.only(
-                    topLeft:Radius.circular(50),
-                    topRight: Radius.circular(50)),
-              ),
 
-              padding: EdgeInsets.all(20),
+        body: SafeArea(
 
-              child:
-              Column(
-                //mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
+          child: Container(
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("bg1.jpg"), fit: BoxFit.cover)),
+          child: SingleChildScrollView(
+            child:Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
 
-                    margin:EdgeInsets.only(bottom:15),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                SizedBox(height: 50,),
+                Container(
+                  margin: EdgeInsets.all(30),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      dashCard(Icons.cloud_outlined, "21°C",context),
+
+                      dashCard(Icons.water_drop_outlined, "50%",context),
+
+                      dashCard(Icons.co2_outlined, "2.1%",context),
+                    ],
+                  ),
+                ),
+
+                GlassMorphism(
+                  start: 0.1,
+                  end: 0.3,
+                  
+                  topRight: 30,
+                  
+                  topLeft: 30,
+                  bottomLeft: 0,
+                  
+                  bottomRight: 0,
+                  blurx: 2,
+                  blury: 2,
+                  child: Container(
+                   /* decoration: const BoxDecoration(
+                      color: Colors.lightBlue,
+                      borderRadius: BorderRadius.only(
+                          topLeft:Radius.circular(50),
+                          topRight: Radius.circular(50)),
+                    ),*/
+
+                    padding: EdgeInsets.all(20),
+
+                    child:
+                    Column(
+                      //mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        TextButton(
-                            style: TextButton.styleFrom(
-                              foregroundColor: Colors.white,
-                              textStyle: const TextStyle(fontSize: 18),
+                        Container(
 
-                            ),
-                            onPressed: (){
-                              setState(() {
-                                section = "rooms";
-                              });
-                            }, child: Text("Rooms")),
+                          margin:EdgeInsets.only(bottom:15),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              TextButton(
+                                  style: TextButton.styleFrom(
+                                    foregroundColor: Colors.deepPurple,
+                                    textStyle: const TextStyle(fontSize: 18),
 
-                        TextButton(style: TextButton.styleFrom(
-                          foregroundColor: Colors.white,
-                          textStyle: const TextStyle(fontSize: 18),
-                        ),onPressed: (){
-                          setState(() {
-                            section = "devices";
-                          });
-                        }, child: Text("Devices")),
+                                  ),
+                                  onPressed: (){
+                                    setState(() {
+                                      section = "rooms";
+                                    });
+                                  }, child: Text("Scenes")),
+
+                              TextButton(style: TextButton.styleFrom(
+                                foregroundColor: Colors.deepPurple,
+                                textStyle: const TextStyle(fontSize: 18),
+                              ),onPressed: (){
+                                setState(() {
+                                  section = "devices";
+                                });
+                              }, child: Text("Devices")),
+                            ],
+                          ),
+                        ),
+
+                          Container(
+                            height: MediaQuery.of(context).size.height * 0.75,
+
+                            child: redirectSection(section),
+
+                        ),
+
                       ],
                     ),
                   ),
-
-                    Container(
-                      child: redirectSection(section),
-
-                  ),
-
-                ],
-              ),
-            ),),
-        ],
-      ),
-    ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        ),
     );
   }
 }
-Widget dashCard (icon,text){
-  return Card(
+Widget dashCard (icon,text,context){
+  return GlassMorphism(
+    start: 0.1,
+    end: 0.2,
+    topRight: 30,
+    topLeft: 30,
+    bottomLeft: 30,
+    bottomRight: 30,
+    blurx: 3,
+    blury: 3,
     child: Container(
       padding: EdgeInsets.only(left:5, right: 5, top:20, bottom:20),
-      height: 95,
-      width: 95,
+      height: 100,
+      width: MediaQuery.of(context).size.width * 0.24,
       child: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children:  [
-            Icon(icon),
-            SizedBox(height: 5,),
-            Text(text, style: TextStyle(fontSize: 10),textAlign: TextAlign.center,),
+            Icon(icon,color: Colors.deepPurple,size: 30,),
+            Text(text, style: TextStyle(fontSize: 18,color: Colors.deepPurple),textAlign: TextAlign.center,),
           ],
         ),
       ),
