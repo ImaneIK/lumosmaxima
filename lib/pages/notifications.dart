@@ -4,12 +4,12 @@ import 'package:test1/pages/user_details.dart';
 import '../UI/MyDrawer.dart';
 import '../UI/glass.dart';
 
-class Users extends StatefulWidget {
-  const Users({Key? key}) : super(key: key);
+class Notifications extends StatefulWidget {
+  const Notifications({Key? key}) : super(key: key);
   @override
-  State<Users> createState() => _UsersState();
+  State<Notifications> createState() => _NotificationsState();
 }
-class _UsersState extends State<Users> {
+class _NotificationsState extends State<Notifications> {
 
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -18,7 +18,7 @@ class _UsersState extends State<Users> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(254, 244, 255, 1),
-        title: Text('Users',style: TextStyle(color: Colors.deepPurple),),
+        title: Text('Notifications',style: TextStyle(color: Colors.deepPurple),),
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
@@ -47,13 +47,13 @@ class _UsersState extends State<Users> {
 
               SizedBox(height: 20,),
 
-              list_of_users("John Doe","Admin",Icons.person_outline),
+              list_of_users("Security","Activate the two-step authentification",Icons.person_outline),
 
-              list_of_users("Janette","Admin",Icons.person_outline),
+              list_of_users("Devices","The Microwave has finished",Icons.person_outline),
 
-              list_of_users("Bob","Guest",Icons.person_outline),
+              list_of_users("Users","A new person detected near",Icons.person_outline),
 
-              list_of_users("Harry","Guest",Icons.person_outline),
+              list_of_users("Devices","New device detected: Alexa",Icons.person_outline),
 
 
             ],

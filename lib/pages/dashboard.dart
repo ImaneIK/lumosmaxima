@@ -30,7 +30,7 @@ class _DashboardState extends State<Dashboard> {
     return Scaffold(
          // backgroundColor: Color.fromRGBO(0, 0, 0, 0),
           appBar: AppBar(
-              backgroundColor: Color.fromRGBO(1, 0, 0, 0),
+            backgroundColor: Color.fromRGBO(254, 244, 255, 1), title: Text('Dashboard',style: TextStyle(color: Colors.deepPurple),),
             leading: Builder(
               builder: (BuildContext context) {
                 return IconButton(

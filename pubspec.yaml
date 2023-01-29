@@ -41,6 +41,7 @@ dependencies:
   animated_splash_screen:
   sleek_circular_slider: ^1.2.0+web
   vector_math: any
+  flutter_settings_screens:
 
 dev_dependencies:
   flutter_test:

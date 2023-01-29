@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test1/pages/appliance.dart';
 import 'package:test1/pages/dashboard.dart';
-import 'package:test1/pages/profile.dart';
+import 'package:test1/pages/notifications.dart';
 import 'package:test1/pages/settings.dart';
 import 'package:test1/pages/users.dart';
 
@@ -22,7 +22,7 @@ class _RoutingState extends State<Routing> {
 
 
   int _selectedIndex = 0;
-  var myBody = [Dashboard(),Appliance(),Users(), Profile(),Settings()];
+  var myBody = [Dashboard(),Appliance(),Users(), Notifications(),Settings()];
 
   Widget MyTile(icon,text,index){
     return ListTile(
@@ -55,7 +55,7 @@ class _RoutingState extends State<Routing> {
           '0': (context) => Dashboard(),
           '1': (context) => Appliance(),
           '2': (context) => Users(),
-          '3': (context) => Profile(),
+          '3': (context) => Notifications(),
           '4': (context) => Settings(),
         },
         home: Scaffold(

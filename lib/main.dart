@@ -1,16 +1,13 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:test1/pages/appliance.dart';
-import 'package:test1/pages/dashboard.dart';
-import 'package:test1/pages/profile.dart';
-import 'package:test1/pages/settings.dart';
-import 'package:test1/pages/users.dart';
-
+import 'package:flutter_settings_screens/flutter_settings_screens.dart' as s;
 import 'login.dart';
 
 
-void main() {
-  runApp( MyApp());
+Future<void> main() async {
+  await s.Settings.init(cacheProvider: s.SharePreferenceCache());
+  runApp(
+      MyApp());
 }
 
 class MyApp extends StatefulWidget {

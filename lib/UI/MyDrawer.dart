@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../pages/appliance.dart';
 import '../pages/dashboard.dart';
-import '../pages/profile.dart';
+import '../pages/notifications.dart';
 import '../pages/settings.dart';
 import '../pages/users.dart';
 
@@ -16,7 +16,7 @@ class MyDrawer extends StatefulWidget {
 class _MyDrawerState extends State<MyDrawer> {
 
   int _selectedIndex = 0;
-  var myBody = [Dashboard(),Appliance(),Users(), Profile(),Settings()];
+  var myBody = [Dashboard(),Appliance(),Users(), Notifications(),Settings()];
 
 
   @override
@@ -39,7 +39,7 @@ class _MyDrawerState extends State<MyDrawer> {
           MyTile(Icons.house_outlined, "Dashboard", 0),
           MyTile(Icons.developer_board, "Rooms & Devices", 1),
           MyTile(Icons.group_outlined, "Users", 2),
-          MyTile(Icons.person_outline, "Profile", 3),
+          MyTile(Icons.notifications_active_outlined, "Notifications", 3),
           MyTile(Icons.settings_outlined, "Settings", 4),
         ],
       ),
