@@ -45,14 +45,6 @@ class ConnectedModel extends Model{
     ),
 
     Device(
-      icon: Icons.router_outlined,
-      id: '6',
-      title : 'Router',
-      status : 'Connected',
-      isEnable : true,
-    ),
-
-    Device(
       icon: Icons.light_rounded,
       id: '7',
       title : 'Lamp',

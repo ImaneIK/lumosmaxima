@@ -5,7 +5,6 @@ import 'package:test1/pages/device_pages/CoffeeMakerPage.dart';
 import 'package:test1/pages/device_pages/FreezerPage.dart';
 import 'package:test1/pages/device_pages/LampPage.dart';
 import 'package:test1/pages/device_pages/MVPage.dart';
-import 'package:test1/pages/device_pages/RouterPage.dart';
 import 'package:test1/pages/device_pages/StovePage.dart';
 import 'package:test1/pages/device_pages/ac.dart';
 import 'model/connectedModel.dart';
@@ -49,11 +48,6 @@ class _SceneSectionState extends State<SceneSection> {
           context,
           MaterialPageRoute(
               builder: (context) => StovePage()));
-    }else if(model.title=="Router"){
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => RouterPage()));
     }else if(model.title=="Lamp"){
       Navigator.push(
           context,

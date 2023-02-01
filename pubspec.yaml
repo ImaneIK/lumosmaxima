@@ -42,6 +42,18 @@ dependencies:
   sleek_circular_slider: ^1.2.0+web
   vector_math: any
   flutter_settings_screens:
+  material_design_icons_flutter: ^5.0.5955-rc.1
+  provider: ^5.0.0
+  flutter_native_splash: ^2.1.6
+  flutter_screenutil: ^5.5.3+2
+  flutter_spinkit: ^5.1.0
+  google_fonts: ^3.0.1
+  pin_code_fields: ^7.4.0
+  simple_animations: ^3.2.0
+  flutter_lints: ^1.0.4
+  pulse_widget:
+
+
 
 dev_dependencies:
   flutter_test:
@@ -52,7 +64,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -80,6 +92,12 @@ flutter:
     - assets/31048.png
     - assets/cool.png
     - assets/heat.png
+    - assets/light_off.png
+    - assets/light_on.png
+    - assets/pan.png
+    - assets/pan(1).png
+    - coffee-machine.png
+    - coffee-machine1.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -6,6 +6,8 @@ import 'login.dart';
 
 Future<void> main() async {
   await s.Settings.init(cacheProvider: s.SharePreferenceCache());
+ // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  //FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(
       MyApp());
 }
